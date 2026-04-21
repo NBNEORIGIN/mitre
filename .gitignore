@@ -1,0 +1,50 @@
+# ---------------------------------------------------------------------------
+# Root: ignore everything by default, then whitelist only what we want
+# ---------------------------------------------------------------------------
+/*
+
+# Top-level things we want tracked
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/007 DATA/
+!/001 DESIGN/
+
+# ---------------------------------------------------------------------------
+# 001 DESIGN/ — only the source PDF + CSV references + shipped Batch 1 & 2
+# All other giant design/QA artefacts stay local.
+# ---------------------------------------------------------------------------
+/001 DESIGN/*
+!/001 DESIGN/DIP1/
+
+/001 DESIGN/DIP1/*
+!/001 DESIGN/DIP1/Aisle A/
+
+/001 DESIGN/DIP1/Aisle A/*
+!/001 DESIGN/DIP1/Aisle A/DIP1 - AISLE A.pdf
+!/001 DESIGN/DIP1/Aisle A/DIP1_Aisle_A_codes_sequential.csv
+!/001 DESIGN/DIP1/Aisle A/COMPLETE_SOLUTION_ALL_52_PAGES.csv
+!/001 DESIGN/DIP1/Aisle A/UV_PRINT_FILES_SPLIT/
+!/001 DESIGN/DIP1/Aisle A/UV_PRINT_FILES_SPLIT_BATCH2/
+
+# ---------------------------------------------------------------------------
+# 007 DATA/ — track scripts, inputs, fresh output; skip disposable artefacts
+# ---------------------------------------------------------------------------
+007 DATA/**/__pycache__/
+007 DATA/output/debug/
+
+# ---------------------------------------------------------------------------
+# Universal
+# ---------------------------------------------------------------------------
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo

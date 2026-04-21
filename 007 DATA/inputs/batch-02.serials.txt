@@ -1,0 +1,116 @@
+# Batch 2 serial order — 100 serials, identical to the list produced by
+# build_batch2_serials() in the original generate_batch2.py.
+#
+# Covers: A3 remainder (8) + A4 full (36) + A5 full (36) + A6 first 20 = 100.
+# Physical print order (same groupings as Batch 1):
+#   - page-1 cols A/B/C/D across rows 1-4
+#   - page-2 rows 1-2 cols E/G/H/J/K/L (K,L are Aztec on rows 1-2)
+#   - page-2 rows 3-4 cols E/G/H/J (no K/L on rows 3-4)
+
+# A3 remainder: rows 3-4, page-2 cols (no K/L)
+A3-3E
+A3-3G
+A3-3H
+A3-3J
+A3-4E
+A3-4G
+A3-4H
+A3-4J
+
+# A4 — full bay (36 tags)
+A4-1A
+A4-1B
+A4-1C
+A4-1D
+A4-2A
+A4-2B
+A4-2C
+A4-2D
+A4-3A
+A4-3B
+A4-3C
+A4-3D
+A4-4A
+A4-4B
+A4-4C
+A4-4D
+A4-1E
+A4-1G
+A4-1H
+A4-1J
+A4-1K
+A4-1L
+A4-2E
+A4-2G
+A4-2H
+A4-2J
+A4-2K
+A4-2L
+A4-3E
+A4-3G
+A4-3H
+A4-3J
+A4-4E
+A4-4G
+A4-4H
+A4-4J
+
+# A5 — full bay (36 tags)
+A5-1A
+A5-1B
+A5-1C
+A5-1D
+A5-2A
+A5-2B
+A5-2C
+A5-2D
+A5-3A
+A5-3B
+A5-3C
+A5-3D
+A5-4A
+A5-4B
+A5-4C
+A5-4D
+A5-1E
+A5-1G
+A5-1H
+A5-1J
+A5-1K
+A5-1L
+A5-2E
+A5-2G
+A5-2H
+A5-2J
+A5-2K
+A5-2L
+A5-3E
+A5-3G
+A5-3H
+A5-3J
+A5-4E
+A5-4G
+A5-4H
+A5-4J
+
+# A6 first 20: page-1 all (16) + page-2 row-1 E/G/H/J (4)
+A6-1A
+A6-1B
+A6-1C
+A6-1D
+A6-2A
+A6-2B
+A6-2C
+A6-2D
+A6-3A
+A6-3B
+A6-3C
+A6-3D
+A6-4A
+A6-4B
+A6-4C
+A6-4D
+A6-1E
+A6-1G
+A6-1H
+A6-1J

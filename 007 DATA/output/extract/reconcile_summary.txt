@@ -1,0 +1,21 @@
+Total rows: 1832
+
+Classification breakdown:
+  pdf-matches-complete-only                  566
+  pdf-disagrees-sequential-upper             529
+  all-agree-upper                            367
+  all-agree                                  366
+  missing-from-pdf                             4
+
+Lower bays (A1-A26): 936 rows
+  pdf-matches-complete-only                  566
+  all-agree                                  366
+  missing-from-pdf                             4
+
+Upper bays (A27-A54): 896 rows
+  pdf-disagrees-sequential-upper             529
+  all-agree-upper                            367
+
+PDF is authoritative. Of the 1828 serials with a PDF UUID:
+  matched by complete_solution.csv :   932
+  matched by sequential.csv        :   733
