@@ -1,0 +1,26 @@
+#,serial,expected_uuid,code_format,shelf_row,mount_type,source_pdf_page,observed_uuid,pass_fail,rationale
+1,A1-1A,8eb94a96-886f-6655-b7fd-799d1cd1f216,QR Code,1,Screw,1,,,"Batch 1 (shipped) - first tag, 1-digit bay, QR"
+2,A3-2L,f6cbb20f-d22c-bd5f-c26c-f3ad8ca36e0f,Aztec,2,Screw,6,,,Batch 1 (shipped) - Aztec K/L column
+3,A4-1A,dab94a96-8ffc-2d2c-874a-789e5ef4decc,QR Code,1,Screw,7,,,Batch 2 (shipped) - QR row 1
+4,A6-1J,fab94a96-9abe-2845-c903-522ec3520305,QR Code,1,Screw,12,,,Batch 2 (shipped) - QR page-2 non-Aztec column
+5,A7-1B,dab94a96-a4ec-b15c-962c-623d5582ae7c,QR Code,1,Screw,13,,,A7 anomaly - first physical A7 tag
+6,A7-1L,04cbb20f-d37d-8a58-f60e-629201198c0c,Aztec,1,Screw,14,,,"A7 anomaly - previously 'phantom' A7, Aztec"
+7,A7-2L,d4cbb20f-d428-733d-99d0-a72019dc703c,Aztec,2,Screw,14,,,"A7 anomaly - previously 'phantom' A7, Aztec"
+8,A7-3D,90b94a96-8a64-4d4c-c4d5-4377b6d722c8,QR Code,3,Screw,13,,,A7 anomaly - previously 'phantom' A7
+9,A7-4D,8ab94a96-8ac1-d4b5-18fb-ad29f7f968fd,QR Code,4,Adhesive,13,,,"A7 anomaly - previously 'phantom' A7, row-4 adhesive"
+10,A10-1A,52b94a96-8d59-dfad-c68b-38a56ec5acf8,QR Code,1,Screw,19,,,2-digit bay - first tag using smaller-text layout
+11,A15-1G,9eb94a96-9cba-33ea-727c-1ee1ce7a6133,QR Code,1,Screw,30,,,Historical confusion - the '...6133' tag (was misread as A15-2A)
+12,A15-2A,c6b94a96-976f-d761-501d-2e19edb13e9c,QR Code,2,Screw,29,,,"User-flagged historically, confirmed correct (ends ...3e9c)"
+13,A15-2H,4cb94a96-9e12-f972-11fe-c1b755cc05b3,QR Code,2,Screw,30,,,"User-flagged historically, confirmed correct (ends ...05b3)"
+14,A20-4J,76b94a96-8bfb-bf1c-0282-dc04c5353806,QR Code,4,Adhesive,40,,,2-digit bay - row-4 adhesive
+15,A26-1L,c2cbb20f-dad8-2ed2-676c-84ae5021503e,Aztec,1,Screw,52,,,Last lower-aisle bay - Aztec K/L
+16,A26-4J,68b94a96-8966-f1fe-e64e-2a12c310a47f,QR Code,4,Adhesive,52,,,Last lower-aisle bay - row-4 adhesive
+17,A27-1A,fcb94a96-d698-1188-0fc8-9b5b039fb72f,QR Code,1,Screw,53,,,First upper-aisle bay - QR row 1
+18,A30-2H,d6b94a96-d687-7781-7a76-d90efcb24483,QR Code,2,Screw,60,,,Upper-aisle spot check - QR row 2
+19,A40-3E,24b94a96-cf5f-479b-bb88-96a05094a9ca,QR Code,3,Screw,80,,,Upper-aisle spot check - QR row 3
+20,A45-4A,fcb94a96-df89-0f31-7224-2f68db89ca6e,QR Code,4,Adhesive,89,,,Upper-aisle spot check - row-4 adhesive
+21,A52-4J,02b94a96-9afe-37df-a266-01744e218f39,QR Code,4,Adhesive,104,,,Penultimate bay - row-4 adhesive
+22,A53-1A,d2c8654d-ba4f-5639-adb1-b18c76d9cf9e,Aztec,1,Screw,105,,,All-Aztec upper-aisle (pages 105-108)
+23,A53-2H,d8c8654d-bb1c-9969-2b3f-46a48cbab858,Aztec,2,Screw,106,,,Known duplicate-UUID pair - also at A54-2H (source-PDF anomaly)
+24,A54-2H,d8c8654d-bb1c-9969-2b3f-46a48cbab858,Aztec,2,Screw,108,,,Known duplicate-UUID pair - same UUID as A53-2H
+25,A54-4J,80c8654d-bb63-648e-4fe6-f6a6adde48c8,Aztec,4,Adhesive,108,,,"Last tag in aisle - Aztec, row-4 adhesive"
