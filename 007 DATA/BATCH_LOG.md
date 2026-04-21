@@ -136,6 +136,40 @@ byte-identical to this pipeline).
 
 ---
 
+## Ladder validation (acceptance criterion)
+
+Before shipping any regenerated batch the pipeline must pass
+`src/ladder_validation.py` with **72 / 72**. The script re-decodes
+pages 1, 2, 29, 30 of the source PDF and cross-checks every position
+against `COMPLETE_SOLUTION_ALL_52_PAGES.csv`.
+
+**History of the ladder**: early in the project the decoder had to be
+iteratively validated starting from a single QR (A1-2A) and doubling
+until a whole page passed, because the combination of scaling, Aztec
+decoding, and row/column clustering could drift silently. The
+accepted sequence is 1 tag -> 2 -> 4 -> 6 -> 8 -> 16 -> 20 -> 36 -> 72
+positions, doubling coverage each step. The four pages chosen (1, 2,
+29, 30) together span every layout the document contains:
+
+- Pure-QR 16-code page (pages 1 and 29)
+- Mixed QR + Aztec 20-code page (pages 2 and 30)
+- Client-confirmed ground truth (pages 1 and 2)
+- Historically flagged bay (pages 29 and 30, bay A15 with A15-2A /
+  A15-2H)
+
+If a future PDF introduces a new layout (e.g. pages 53+ which switch
+to all-16-per-page, or pages 105-108 which are pure Aztec), add that
+page to `LADDER_PAGES` in `ladder_validation.py` and keep its expected
+count in sync.
+
+The decoder itself (`src/extract_pdf.py`) was *not* modified during
+the most recent ladder pass (2026-04-21, 72/72). The ladder confirmed
+that the existing multi-DPI + UUID-regex + position-deduplication
+approach was already correct; earlier reports of "wrong" A15-2A /
+A15-2H turned out to be either mislabeled prints or UUIDs from
+neighbouring tags (the `...6133` UUID that looked like a bad A15-2A
+decode is actually A15-1G).
+
 ## NEXT
 
 Aisle A is now fully accounted for. Future work: DNR1 and/or DIP1

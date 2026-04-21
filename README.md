@@ -58,10 +58,10 @@ pip install pandas pymupdf zxing-cpp qrcode pillow opencv-python
 
 ```powershell
 # 1. Decode every QR / Aztec from the source PDF
-.\.venv\Scripts\python.exe "007 DATA\src\extract_pdf.py"
+.\.venv\Scripts\python.exe "007 DATA\src\extract\extract_pdf.py"
 
 # 2. Infer serial labels from positions
-.\.venv\Scripts\python.exe "007 DATA\src\assign_serials.py"
+.\.venv\Scripts\python.exe "007 DATA\src\extract\assign_serials.py"
 
 # 3. Build the authoritative master + sequential order
 .\.venv\Scripts\python.exe "007 DATA\src\build_master_and_sequential.py"
@@ -75,7 +75,41 @@ pip install pandas pymupdf zxing-cpp qrcode pillow opencv-python
 # 5. QA
 .\.venv\Scripts\python.exe "007 DATA\src\verify_reproducibility.py"
 .\.venv\Scripts\python.exe "007 DATA\src\qa_check_fresh_output.py"
+
+# 6. Ladder regression test (see section below)
+.\.venv\Scripts\python.exe "007 DATA\src\ladder_validation.py"
 ```
+
+## Ladder validation (the acceptance test)
+
+`007 DATA/src/ladder_validation.py` is the project's
+**acceptance-criterion regression test**. It must print
+`72 pass / 0 fail` before any regenerated batch is shipped.
+
+Historically the decoder had to be *taught* by a human to read the
+source PDF reliably, in steps:
+
+| Rung | Scope                              | Content                                    |
+| ---- | ---------------------------------- | ------------------------------------------ |
+| 1    | 1 tag                              | A1-2A (top-left QR of page 1)              |
+| 2    | 1 row × 2 columns                  | A1-2A + A1-1A                              |
+| 3    | 2 rows × 2 columns                 | first 2x2 block of page 1                  |
+| 4    | 2 rows × 3 columns                 | first 2x3 block of page 1                  |
+| 5    | 2 rows × 4 columns                 | first 2x4 block of page 1                  |
+| 6    | Whole page 1 (16 pure-QR codes)    | bay A1, rows 1-4 x cols A-D                |
+| 7    | Whole page 2 (20 mixed QR+Aztec)   | bay A1, rows 1-4 x cols E,G,H,J,K,L        |
+| 8    | Page 29 (16 pure-QR)               | bay A15, rows 1-4 x cols A-D               |
+| 9    | Page 30 (20 mixed QR+Aztec)        | bay A15, rows 1-4 x cols E,G,H,J,K,L       |
+
+Each rung is cross-checked against the client-accepted ground truth in
+`COMPLETE_SOLUTION_ALL_52_PAGES.csv`. Pages 1 and 2 were the rungs the
+client explicitly confirmed matched their printed bitmaps; pages 29 and
+30 cover a historically-problematic bay (A15-2A / A15-2H). Locking
+these four pages in catches any regression in the decoder, the
+row/column clusterer, or the serial-assignment logic.
+
+The consolidated script runs all four pages in ~20 s and exits 0 iff
+every position matches.
 
 ## Known anomalies (see `007 DATA/BATCH_LOG.md` for details)
 
