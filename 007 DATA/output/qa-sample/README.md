@@ -2,8 +2,9 @@
 
 > **Status (2026-04-21):** client manual scan returned **25 / 25 PASS**.
 > Every QR and Aztec code on both sheets decoded to the UUID listed in
-> `QA_SAMPLE_CHECKLIST.csv`. See `007 DATA/BATCH_LOG.md` for the
-> production sign-off entry.
+> `QA_SAMPLE_CHECKLIST.csv`. The signed sign-off record is archived as
+> `QA_SAMPLE_CHECKLIST_SIGNED_2026-04-21.csv`. See `007 DATA/BATCH_LOG.md`
+> for the production sign-off entry.
 
 
 This folder contains a small, stratified sample of 25 asset tags that

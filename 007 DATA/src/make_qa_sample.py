@@ -104,6 +104,21 @@ def main() -> int:
     print(f"wrote {serial_txt}  ({len(SAMPLE)} serials)")
 
     checklist = OUT_DIR / "QA_SAMPLE_CHECKLIST.csv"
+    # Defensive: if the existing checklist looks like it has been
+    # annotated by the client (any non-header row has a value in a
+    # column beyond the template's 10), refuse to clobber it so a
+    # sign-off record is never silently lost. Rename the signed
+    # copy (e.g. QA_SAMPLE_CHECKLIST_SIGNED_YYYY-MM-DD.csv) first.
+    if checklist.exists():
+        with checklist.open("r", encoding="utf-8") as f:
+            rows = list(csv.reader(f))
+        if len(rows) > 1 and any(len(r) > 10 and any(c.strip() for c in r[10:])
+                                  for r in rows[1:]):
+            print(f"ERROR: {checklist} appears to contain client annotations "
+                  f"(extra column values). Archive it first (e.g. rename to "
+                  f"QA_SAMPLE_CHECKLIST_SIGNED_YYYY-MM-DD.csv) and re-run.")
+            return 2
+
     with checklist.open("w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
         w.writerow([
