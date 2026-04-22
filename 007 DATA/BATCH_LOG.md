@@ -170,6 +170,32 @@ A15-2H turned out to be either mislabeled prints or UUIDs from
 neighbouring tags (the `...6133` UUID that looked like a bad A15-2A
 decode is actually A15-1G).
 
+## Client QA sample — 2026-04-21 — 25 / 25 PASS
+
+First end-to-end human-in-the-loop acceptance of the fresh pipeline.
+The client manually scanned all 25 tags of the stratified QA sample
+(`007 DATA/output/qa-sample/`) and every decoded UUID matched the
+expected value in `QA_SAMPLE_CHECKLIST.csv`.
+
+- Sample composition: 17 QR + 8 Aztec, 19 screw + 6 adhesive, spans
+  every layout in the document (shipped-batch sanity, A7 anomaly,
+  historical A15 flags, 2-digit-bay text offset, upper-aisle spot
+  checks, all-Aztec pages 105-108, known duplicate-UUID pair).
+- Generator / checklist: `src/make_qa_sample.py` (reproducible; edit
+  the `SAMPLE` list and rerun to produce a different sample).
+- Self-consistency gate before print: `src/verify_qa_sample.py`
+  rasterises the two sample sheets at print scale and confirms every
+  `<g id="tag_SERIAL">` contains the UUID that `master_uuids.csv`
+  expects (25 / 25 on 2026-04-21).
+- Client result: **25 / 25** scanned UUIDs match expected.
+
+This is the first time the whole chain — source PDF -> zxing decoder
+-> A7 layout fix -> master_uuids.csv -> generate_batch.py -> UV print
+-> physical tag -> phone scanner -> human eyeball -> checklist — has
+been validated end-to-end without a human-in-the-loop correction in
+the middle. Treat this as the green light for production of the
+remaining tags not in Batches 1, 2, 3.
+
 ## NEXT
 
 Aisle A is now fully accounted for. Future work: DNR1 and/or DIP1
